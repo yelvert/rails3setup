@@ -1,3 +1,4 @@
+@app_name = Rails::Application.subclasses[0].name.to_s.split("::")[0]
 #remove prototype
 run "rm public/javascripts/controls.js"
 run "rm public/javascripts/dragdrop.js"
@@ -31,7 +32,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
-module #{@app_const_base}
+module #{@app_name}
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -73,7 +74,7 @@ file 'app/views/layouts/application.html.erb', <<-ERB
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-  <title>#{@app_const_base}</title>
+  <title>#{@app_name.titleize}</title>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <%= javascript_include_tag :defaults %>
   <%= stylesheet_link_tag :defaults %>
