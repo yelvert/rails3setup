@@ -8,18 +8,19 @@ run "rm public/javascripts/prototype.js"
 #add jQuery files
 run "cp -r ../rails3setup/install/. ."
 
-gem 'rails3-generators'
+run %{echo "
+gem 'devise', :git => 'http://github.com/plataformatec/devise.git'
+gem 'syntax'
 
-#rspec/cucumber stuff
-
-gem "rspec-rails", ">= 2.0.0.beta.11"
-gem 'capybara'
-gem 'database_cleaner'
-gem 'cucumber-rails'
-gem 'cucumber'
-gem 'spork'
-gem 'launchy'    # So you can do Then show me the page
-gem 'prawn'
+group :development, :test do
+  gem 'rspec-rails', '>= 2.0.0.beta.22'
+  gem 'steak', '>= 1.0.0.beta.1'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'fabrication'
+end
+" >> Gemfile}
 
 #add jQuery hooks
 run "rm config/application.rb"
@@ -87,5 +88,4 @@ ERB
 
 run "touch public/stylesheets/main.css"
 
-#final tasks
-generate 'cucumber:install','--rspec', '--capybara'
+run "bundle install"
