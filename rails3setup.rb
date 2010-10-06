@@ -79,6 +79,7 @@ file 'app/views/layouts/application.html.erb', <<-ERB
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <%= javascript_include_tag :defaults %>
   <%= stylesheet_link_tag :defaults %>
+  <%= csrf_meta_tag %>
 </head>
 <body>
   <%= yield %>
