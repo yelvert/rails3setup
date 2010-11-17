@@ -76,3 +76,6 @@ ERB
 run "touch public/stylesheets/main.css"
 
 run "bundle install"
+
+git :add => "."
+git :commit => "-a -m 'Applied Rails3Setup template.'"
