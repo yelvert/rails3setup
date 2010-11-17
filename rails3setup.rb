@@ -8,20 +8,6 @@ run "rm public/javascripts/prototype.js"
 #add jQuery files
 run "cp -r ../rails3setup/install/. ."
 
-run %{echo "
-gem 'devise', :git => 'http://github.com/plataformatec/devise.git'
-gem 'syntax'
-
-group :development, :test do
-  gem 'rspec-rails', '>= 2.0.0.beta.22'
-  gem 'steak', '>= 1.0.0.beta.1'
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'launchy'
-  gem 'fabrication'
-end
-" >> Gemfile}
-
 #add jQuery hooks
 run "rm config/application.rb"
 file 'config/application.rb', <<-ERB
@@ -40,7 +26,7 @@ module #{@app_name}
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(\#{config.root}/extras)
+    # config.autoload_paths += %W(#{config.root}/extras)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -58,7 +44,7 @@ module #{@app_name}
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery-ui rails application)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery-ui rails)
     config.action_view.stylesheet_expansions[:defaults] = %w(jquery-ui main)
 
     # Configure the default encoding used in templates for Ruby 1.9.
